@@ -1,0 +1,32 @@
+# Core scientific stack
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+statsmodels>=0.14
+scikit-learn>=1.4
+matplotlib>=3.8
+seaborn>=0.13
+
+# Gradient boosting
+xgboost>=2.0
+lightgbm>=4.0
+
+# Bayesian modeling
+pymc>=5.10
+arviz>=0.17
+
+# SQL & big data
+duckdb>=0.10
+pyspark>=3.5
+pyarrow>=14.0
+
+# Survival analysis / interpretability / optimization
+lifelines>=0.28
+shap>=0.44
+pulp>=2.7
+networkx>=3.2
+
+# Notebook tooling
+jupyter
+jupytext>=1.16
+ipykernel
