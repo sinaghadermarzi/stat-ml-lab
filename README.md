@@ -64,6 +64,14 @@ is seeded so a fresh run reproduces the committed outputs.
 | [Imbalanced Classification: a Fraud Case Study](04_ml_tabular/04_imbalanced_fraud.ipynb) | Fraud at ~1% prevalence: PR-focused evaluation, precision@alert-budget, cost-sensitive weighting vs resampling (SMOTE skepticism, honestly evaluated), calibration repair, threshold choice under review capacity, and selective-labels reality. |
 | [Feature Importance Done Right](04_ml_tabular/05_explainability_shap.ipynb) | Impurity vs permutation importance pitfalls, TreeSHAP global and local explanations, correlated-feature credit splitting, why importance ≠ causality (demonstrated), and PDP/ICE extrapolation traps. |
 
+### 05 · Time Series & Forecasting
+| Notebook | What it covers |
+|---|---|
+| [Time Series Foundations](05_time_series/01_ts_foundations.ipynb) | STL decomposition and remainder reading, ADF/KPSS with the 2x2 interpretation grid, ACF/PACF identification built by simulation, spurious random-walk correlations quantified, and why autocorrelation breaks naive CIs (with Newey-West and block-bootstrap fixes). |
+| [Classical Forecasting: Baselines, ETS, and (S)ARIMA](05_time_series/02_classical_forecasting.ipynb) | Baselines that set the bar, Holt-Winters/ETS, SARIMA with pragmatic order selection and residual diagnostics, fan charts with an empirical interval-coverage backtest, and rolling-origin evaluation across MAE/RMSE/MAPE/sMAPE/MASE. |
+| [ML Forecasting with Gradient Boosting](05_time_series/03_ml_forecasting_backtesting.ipynb) | Forecasting as supervised learning on a multi-SKU retail panel: the off-by-one leakage trap, recursive vs direct multi-step, honest backtests against seasonal naive and ETS in both winning regimes, global vs per-SKU models, and calibrated P10/P50/P90 quantile forecasts. |
+| [Time Series Anomaly Detection](05_time_series/04_anomaly_detection.ipynb) | A labeled KPI-anomaly test bed (spikes, seasonal violations, level shifts, drift) comparing STL+MAD, forecast-interval breaches, CUSUM, and IsolationForest — with detection-delay analysis, alert-budget design, and root-cause breakdowns. |
+
 ### 06 · Applied Bayesian Methods
 | Notebook | What it covers |
 |---|---|
@@ -86,19 +94,27 @@ is seeded so a fresh run reproduces the committed outputs.
 | [Metric Design, Funnels, and Growth Accounting](08_product_analytics/01_metrics_and_growth.ipynb) | North-star metric trees, Goodhart-proof metric design, funnel and binding-constraint analysis, the classic mix-vs-rate conversion decomposition, cohort retention curves, and new/retained/resurrected/churned growth accounting. |
 | [Churn: Supervised ML and Survival Analysis](08_product_analytics/02_churn_survival.ipynb) | Precise churn label design, an as-of-disciplined LightGBM model evaluated on lift and calibration against an oracle ceiling, survival analysis (KM, log-rank, Cox hazard ratios, expected remaining lifetime), and why retention targeting needs uplift, not risk. |
 | [Customer Lifetime Value](08_product_analytics/03_ltv_modeling.ipynb) | Cohort LTV curves and their extrapolation traps, shifted-Beta-Geometric and BG/NBD + Gamma-Gamma implemented from scratch, and ML value prediction evaluated by decile capture and calibration instead of RMSE. |
+| [Customer Segmentation](08_product_analytics/04_segmentation_clustering.ipynb) | Action-first segmentation: RFM scoring with named segments and playbooks, k-means done right (log transforms vs whales, honest elbow/silhouette), GMM soft assignments, the null-clustering trap with gap-statistic and bootstrap-ARI stability guards. |
 
-## Roadmap (planned, not yet authored)
+### 09 · Finance & Operations Research
+| Notebook | What it covers |
+|---|---|
+| [Credit Risk Scorecards](09_finance_and_operations/01_credit_scorecard.ipynb) | A full scorecard from scratch — fine/coarse classing, WOE/IV, PDO points scaling, KS/Gini/grade evaluation, PD calibration economics, a LightGBM challenger comparison, and reject inference with selection on unobservables. |
+| [Financial Returns, Risk, and Backtest Overfitting](09_finance_and_operations/02_returns_risk.ipynb) | Gaussian vs fat-tailed (GARCH-t) price worlds verifying the stylized facts, a full risk stack (EWMA vol, VaR three ways, Expected Shortfall, Kupiec exception tests), and backtest overfitting exposed via 1000 zero-edge strategies with the deflated-Sharpe correction. |
+| [Linear and Integer Programming](09_finance_and_operations/03_optimization_pulp.ipynb) | Translating business problems into LPs/MIPs with PuLP — budget allocation with piecewise-linearized diminishing returns, transportation, staffing MIP — plus verified shadow prices, greedy-vs-exact comparisons, and forecast-error-to-decision-regret propagation. |
+| [Newsvendor, Inventory, and Queueing](09_finance_and_operations/04_inventory_simulation.ipynb) | Critical fractile verified by simulation, quantile-forecast-to-order pipelines, (s,S) policy sweeps tracing the service-vs-cost frontier, safety-stock formula failures, and M/M/c staffing with a hand-rolled discrete-event simulator validated against Erlang C. |
 
-- **05 · Time Series**: foundations (decomposition, stationarity, spurious regression), classical forecasting (ETS/SARIMA with honest interval coverage), ML forecasting with gradient boosting and rolling-origin backtesting, KPI anomaly detection.
-- **08 · Product Analytics**: customer segmentation (RFM, clustering that drives action, the null-clustering trap).
-- **09 · Finance & Operations**: credit scorecards (WOE/IV, PDO scaling, reject inference), returns and risk (fat tails, VaR/ES, backtest overfitting), linear/integer programming with PuLP, newsvendor and queueing by simulation.
-- **10 · ML in Production**: drift detection and monitoring (PSI, delayed labels, retraining policy), production readiness (pipelines, training-serving skew, shadow/canary rollouts).
+### 10 · ML in Production
+| Notebook | What it covers |
+|---|---|
+| [Drift Detection and Model Monitoring](10_ml_in_production/01_drift_monitoring.ipynb) | Covariate vs concept drift vs label shift on a 30-month scoring stream: PSI from scratch with calibrated thresholds, delayed-label proxy monitoring, benign vs killer drift in code, and an honest backtest of scheduled vs triggered retraining. |
+| [From Notebook to Production](10_ml_in_production/02_production_readiness.ipynb) | Refactoring a leaky workflow into a serialized sklearn Pipeline with metadata, silent training-serving skew and its schema-validation defense, retrain-and-diff reproducibility tests, pre-deploy gates, and a shadow rollout catching a bad challenger. |
 
 ## Suggested paths
 
 - **Product DS / tech company interview:** modules 01 → 02 → 03 → 07 → 08, then 06.
-- **ML-heavy applied scientist:** modules 01 → 04, then 02 → 03 and 06.
-- **Finance / operations:** modules 01 → 04 → 06, plus 09 when available.
+- **ML-heavy applied scientist:** modules 01 → 04 → 05 → 10, then 02 → 03 and 06.
+- **Finance / operations:** modules 01 → 05 → 09, then 04 → 06.
 
 ## Contributing
 
